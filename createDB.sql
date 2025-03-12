@@ -8,7 +8,7 @@ USE PetShop;
 
 CREATE TABLE [User] (
     UserID INT PRIMARY KEY IDENTITY(1,1),
-    Username NVARCHAR(50) UNIQUE NOT NULL,
+    Email NVARCHAR(50) UNIQUE NOT NULL,
     Pass NVARCHAR(255) NOT NULL, 
     Role NVARCHAR(20) NOT NULL CHECK (Role IN ('Customer', 'Manager')),
     CreatedAt DATETIME DEFAULT GETDATE(),
