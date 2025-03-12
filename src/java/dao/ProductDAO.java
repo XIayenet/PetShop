@@ -58,49 +58,57 @@ public class ProductDAO extends DBContext {
      
     
   
-    
-    public List<ProductEntity> getAllProducts() throws SQLException {
-        List<ProductEntity> products = new ArrayList<>();
-        String sql = "SELECT * FROM Product";
-        try (Connection conn = DBConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                products.add(new ProductEntity(
-                    rs.getInt("ProductID"),
-                    rs.getString("ProductName"),
-                    rs.getString("Description"),
-                    rs.getDouble("Price"),
-                    rs.getInt("StockQuantity")
-                ));
-            }
-        }
-        return products;
-    }
-    
-    public void updateProduct(int productId, String name, String description, double price, int stock) throws SQLException {
+    //******************************************************************
+//    public List<ProductEntity> getAllProducts() throws SQLException {
+//        List<ProductEntity> products = new ArrayList<>();
+//        String sql = "SELECT * FROM Product";
+//        try (Connection conn = DBConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+//            while (rs.next()) {
+//                products.add(new ProductEntity(
+//                    rs.getInt("ProductID"),
+//                    rs.getString("ProductName"),
+//                    rs.getString("Description"),
+//                    rs.getDouble("Price"),
+//                    rs.getInt("StockQuantity")
+//                ));
+//            }
+//        }
+//        return products;
+//    }
+    //******************************************************************
+    public void updateProduct(int productId, String name, String description, double price, int stock)  {
         String sql = "UPDATE Product SET ProductName = ?, Description = ?, Price = ?, StockQuantity = ? WHERE ProductID = ?";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, name);
-            stmt.setString(2, description);
-            stmt.setDouble(3, price);
-            stmt.setInt(4, stock);
-            stmt.setInt(5, productId);
-            stmt.executeUpdate();
+        try  {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, description);
+            ps.setDouble(3, price);
+            ps.setInt(4, stock);
+            ps.setInt(5, productId);
+            ps.executeUpdate();
+        }catch(Exception e){
+            
         }
     }
     
-    public void deleteProduct(int productId) throws SQLException {
+    public void deleteProduct(int productId) {
         String sql = "DELETE FROM Product WHERE ProductID = ?";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, productId);
-            stmt.executeUpdate();
+        try  {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ps.executeUpdate();
+        }catch(Exception e){
+            
         }
     }
 
   public static void main(String[] args) {
         ProductDAO pdao = new ProductDAO();
-//    pdao.createProduct("cho", "love", 15000, 5);
+    //    pdao.createProduct("cho", "love", 15000, 5);
 
-    System.out.println(pdao.getProduct(1));
+    //    System.out.println(pdao.getProduct(1));
+    //    pdao.updateProduct(1, "cat", "like", 20000, 4);
+    pdao.deleteProduct(2);
   }
 }
 
