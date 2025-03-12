@@ -32,27 +32,24 @@ CREATE TABLE Product (
     ProductName NVARCHAR(100) NOT NULL,
     Description NVARCHAR(255),
     Price DECIMAL(10, 2) NOT NULL,
-    StockQuantity INT NOT NULL
+    StockQuantity INT NOT NULL,
+	Image NVARCHAR(50)
 );
 
 CREATE TABLE Service (
     ServiceID INT PRIMARY KEY IDENTITY(1,1),
     ServiceName NVARCHAR(100) NOT NULL, -- e.g., Grooming, Training
     Description NVARCHAR(255),
-    Price DECIMAL(10, 2) NOT NULL
+    Price DECIMAL(10, 2) NOT NULL,
+	Image NVARCHAR(50)
 );
 
 CREATE TABLE Sale (
     SaleID INT PRIMARY KEY IDENTITY(1,1),
     CustomerID INT NOT NULL,
-    ProductID INT,
-	ServiceID INT,
     SaleDate DATETIME NOT NULL,
-    Quantity INT,
     TotalPrice DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
-	FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 );
 
 CREATE TABLE Tag (
@@ -72,3 +69,24 @@ CREATE TABLE ProductTag (
     FOREIGN KEY (TagID) REFERENCES Tag(TagID)
 );
 
+
+
+-- Junction table for Products in a Sale
+CREATE TABLE SaleProduct (
+    SaleID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL CHECK (Quantity > 0), -- Products can have multiple quantities
+    PRIMARY KEY (SaleID, ProductID),
+    FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+-- Junction table for Services in a Sale
+CREATE TABLE SaleService (
+    SaleID INT NOT NULL,
+    ServiceID INT NOT NULL,
+    Quantity INT NOT NULL CHECK (Quantity = 1), -- Services are added once per sale
+    PRIMARY KEY (SaleID, ServiceID),
+    FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),
+    FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
+);
