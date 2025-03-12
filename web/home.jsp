@@ -6,48 +6,54 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="excute" method="Post">
-            <table>
-                <tr>
-                    <td>Enter :</td>
-                    <td><input type="text"  name="x" id="x" ></td>
-                </tr>        
-                <!--================-->
-                <tr>
-                    <td>Enter y:</td>
-                    <td><input type="text"  name="y" id="y" ></td>
-                </tr>
-                <!--================-->
-                <tr>
-                    <td>Result:</td>
-                    <td><input type="text   "  name="result" id="rs" ></td>
-                </tr>
-                    
-                <!--==========Drop list======-->
-                <tr>                
-                    <td>Select:</td>
-                    <td>
-                        <select name="select">
-                            <option  value="option1" >Option1</option>
-                            <option value="option2" >Option2</option>
-                        </select>
-                    </td>
-                        
-                
-                <tr>
-                    <td>
-                        <input type="Submit" value="Submit">
-                    </td>
-                    <td style="color:red">err</td>
-                </tr>
-            </table>
-        </form>
-            
-    </body>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pet Store Management System</h1>
+    </header>
+    
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the Pet Store Management System.</p>
+        </section>
+        <section id="products">
+            <h2>Products</h2>
+            <form id="product-form">
+                <input type="text" placeholder="Product Name" required>
+                <input type="number" placeholder="Price" required>
+                <input type="text" placeholder="Category" required>
+                <button type="submit">Add Product</button>
+            </form>
+            <ul id="product-list"></ul>
+        </section>
+        <section id="customers">
+            <h2>Customers</h2>
+            <form id="customer-form">
+                <input type="text" placeholder="Customer Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Phone Number" required>
+                <button type="submit">Add Customer</button>
+            </form>
+            <ul id="customer-list"></ul>
+        </section>
+        <section id="orders">
+            <h2>Orders</h2>
+            <p>Order management will be displayed here.</p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>
+

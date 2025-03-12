@@ -3,12 +3,56 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
-<html>
-  <head>
-    <title>TODO supply a title</title>
+
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-      <div>TODO write content</div>
-  </body>
+    <title>Pet Store Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pet Store Management System</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#orders">Orders</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the Pet Store Management System.</p>
+        </section>
+        <section id="products">
+            <h2>Products</h2>
+            <form id="product-form">
+                <input type="text" placeholder="Product Name" required>
+                <input type="number" placeholder="Price" required>
+                <input type="text" placeholder="Category" required>
+                <button type="submit">Add Product</button>
+            </form>
+            <ul id="product-list"></ul>
+        </section>
+        <section id="customers">
+            <h2>Customers</h2>
+            <form id="customer-form">
+                <input type="text" placeholder="Customer Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Phone Number" required>
+                <button type="submit">Add Customer</button>
+            </form>
+            <ul id="customer-list"></ul>
+        </section>
+        <section id="orders">
+            <h2>Orders</h2>
+            <p>Order management will be displayed here.</p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
