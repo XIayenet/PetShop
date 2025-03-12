@@ -130,7 +130,7 @@ public class CustomerDAO extends DBContext {
 
   public static void main(String[] args) {
       CustomerDAO cdao = new CustomerDAO();
-    cdao.insertCustomer(1, "Canh", "Nguyen",966784820, "hp", "vietnam");
+    cdao.insertCustomer(2, "Canh", "Nguyen",966784820, "hp", "vietnam");
   }
 }
    

@@ -9,21 +9,22 @@ package entity;
  * @author admin
  */
 public class UserEntity {
-    private String userName;
+    private String email;
     private String pass;
     private String role;
+    
 
     public UserEntity() {
     }
 
-    public UserEntity(String userName, String pass, String role) {
-        this.userName = userName;
+    public UserEntity(String email, String pass, String role) {
+        this.email = email;
         this.pass = pass;
         this.role = role;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
     public String getPass() {
@@ -34,8 +35,8 @@ public class UserEntity {
         return role;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPass(String pass) {
@@ -48,7 +49,9 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "User{" + "userName=" + userName + ", pass=" + pass + ", role=" + role + '}';
+        return "UserEntity{" + "email=" + email + ", pass=" + pass + ", role=" + role + '}';
     }
+
+   
     
 }

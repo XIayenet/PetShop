@@ -80,6 +80,41 @@ public class UserDao extends DBContext  {
             
         }
     }
+     public UserEntity getUserByEmail(String email) {
+    String sql = " SELECT * FROM [User] WHERE [email] = ? ";
+    try {
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setString(1, email);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+
+        UserEntity u =
+            new UserEntity(
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4));
+                
+        return u;
+      }
+
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+    return null;
+  }
+      public void insertUserWithEmailPassword(String email, String password) {
+    String sql =
+        "  Insert into [User]( [email],[password])\n" + "                       values (?,?)  ";
+
+    try {
+
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setString(1, email);
+      ps.setString(2, password);
+      ps.executeUpdate();
+    } catch (SQLException e) {
+    }
+  }
 
   public static void main(String[] args)  {
       UserDao udao = new UserDao();

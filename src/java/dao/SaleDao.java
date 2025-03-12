@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SaleDao extends DBContext {
+public class SaleDAO extends DBContext {
 
-    public SaleDao() {}
+    public SaleDAO() {}
 
     public void insertSale(String customerID, String productID, int serviceID, int saleDate, int quantity, int totalPrice) {
         String sql = "INSERT INTO Sale (CustomerID, ProductID, ServiceID, SaleDate, Quantity, TotalPrice) VALUES (?, ?, ?, ?, ?, ?)";
@@ -26,20 +26,20 @@ public class SaleDao extends DBContext {
         }
     }
 
-    public SaleEntity getSaleByCustomerID(String customerID) {
-        String sql = "SELECT * FROM Sale WHERE CustomerID = ?";
+    public SaleEntity getSaleById(int id) {
+        String sql = "SELECT * FROM Sale WHERE ID = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, customerID);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 return new SaleEntity(
-                    rs.getString("CustomerID"),
-                    rs.getString("ProductID"),
-                    rs.getInt("ServiceID"),
-                    rs.getInt("SaleDate"),
-                    rs.getInt("Quantity"),
-                    rs.getInt("TotalPrice")
+                        rs.getString("CustomerID"),
+                        rs.getString("ProductID"),
+                        rs.getInt("ServiceID"),
+                        rs.getInt("SaleDate"),
+                        rs.getInt("Quantity"),
+                        rs.getInt("TotalPrice")
                 );
             }
         } catch (SQLException e) {
@@ -56,12 +56,12 @@ public class SaleDao extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 sales.add(new SaleEntity(
-                    rs.getString("CustomerID"),
-                    rs.getString("ProductID"),
-                    rs.getInt("ServiceID"),
-                    rs.getInt("SaleDate"),
-                    rs.getInt("Quantity"),
-                    rs.getInt("TotalPrice")
+                        rs.getString("CustomerID"),
+                        rs.getString("ProductID"),
+                        rs.getInt("ServiceID"),
+                        rs.getInt("SaleDate"),
+                        rs.getInt("Quantity"),
+                        rs.getInt("TotalPrice")
                 ));
             }
         } catch (SQLException e) {
@@ -70,24 +70,31 @@ public class SaleDao extends DBContext {
         return sales;
     }
 
-    public void updateSale(String customerID, String productID, int serviceID, int saleDate, int quantity, int totalPrice) {
-        String sql = "UPDATE Sale SET ProductID = ?, ServiceID = ?, SaleDate = ?, Quantity = ?, TotalPrice = ? WHERE CustomerID = ?";
+    public void updateSale(int id, String customerID, String productID, int serviceID, int saleDate, int quantity, int totalPrice) {
+        String sql = "UPDATE Sale SET CustomerID = ?, ProductID = ?, ServiceID = ?, SaleDate = ?, Quantity = ?, TotalPrice = ? WHERE ID = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, productID);
-            ps.setInt(2, serviceID);
-            ps.setInt(3, saleDate);
-            ps.setInt(4, quantity);
-            ps.setInt(5, totalPrice);
-            ps.setString(6, customerID);
+            ps.setString(1, customerID);
+            ps.setString(2, productID);
+            ps.setInt(3, serviceID);
+            ps.setInt(4, saleDate);
+            ps.setInt(5, quantity);
+            ps.setInt(6, totalPrice);
+            ps.setInt(7, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
-  public static void main(String[] args) {
-      SaleDao sdao = new SaleDao();
-    sdao.insertSale("5", "10", 2, 4, 10, 200000);
-  }
+    public void deleteSale(int id) {
+        String sql = "DELETE FROM Sale WHERE ID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 }
