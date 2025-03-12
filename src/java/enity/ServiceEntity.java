@@ -8,15 +8,15 @@ package enity;
 /**
  * @author admin
  */
-public class Service {
+public class ServiceEntity {
     private String ServiceName;
     private String Description;
     private int Price;
 
-    public Service() {
+    public ServiceEntity() {
     }
 
-    public Service(String ServiceName, String Description, int Price) {
+    public ServiceEntity(String ServiceName, String Description, int Price) {
         this.ServiceName = ServiceName;
         this.Description = Description;
         this.Price = Price;

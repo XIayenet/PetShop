@@ -8,7 +8,7 @@ package enity;
 /**
  * @author admin
  */
-public class Customer {
+public class CustomerEntity {
     private int userID;
     private String firstName;
     private String LastName;
@@ -16,10 +16,10 @@ public class Customer {
     private String Email;
     private String Address;
 
-    public Customer() {
+    public CustomerEntity() {
     }
 
-    public Customer(int userID, String firstName, String LastName, int PhoneNumber, String Email, String Address) {
+    public CustomerEntity(int userID, String firstName, String LastName, int PhoneNumber, String Email, String Address) {
         this.userID = userID;
         this.firstName = firstName;
         this.LastName = LastName;

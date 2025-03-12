@@ -8,7 +8,7 @@ package enity;
 /**
  * @author admin
  */
-public class Sale {
+public class SaleEntity {
     private String CustomerID;
     private String ProductID;
     private int ServiceID;
@@ -16,10 +16,10 @@ public class Sale {
     private int Quantity;
     private int TotalPrice;
 
-    public Sale() {
+    public SaleEntity() {
     }
 
-    public Sale(String CustomerID, String ProductID, int ServiceID, int SaleDate, int Quantity, int TotalPrice) {
+    public SaleEntity(String CustomerID, String ProductID, int ServiceID, int SaleDate, int Quantity, int TotalPrice) {
         this.CustomerID = CustomerID;
         this.ProductID = ProductID;
         this.ServiceID = ServiceID;

@@ -8,15 +8,15 @@ package enity;
 /**
  * @author admin
  */
-public class User {
+public class UserEntity {
     private String userName;
     private String pass;
     private String role;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String userName, String pass, String role) {
+    public UserEntity(String userName, String pass, String role) {
         this.userName = userName;
         this.pass = pass;
         this.role = role;

@@ -8,16 +8,16 @@ package enity;
 /**
  * @author admin
  */
-public class Product {
+public class ProductEntity {
     private String ProductName;
     private String Description;
     private int Price;
     private int StockQuantity;
 
-    public Product() {
+    public ProductEntity() {
     }
 
-    public Product(String ProductName, String Description, int Price, int StockQuantity) {
+    public ProductEntity(String ProductName, String Description, int Price, int StockQuantity) {
         this.ProductName = ProductName;
         this.Description = Description;
         this.Price = Price;
