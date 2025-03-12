@@ -1,91 +1,105 @@
 package dao;
 
 import entity.ServiceEntity;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * ServiceDAO for managing services in the database.
+ */
 public class ServiceDao extends DBContext {
-    public boolean addService(ServiceEntity service) {
-        String sql = "INSERT INTO services (ServiceName, Description, Price) VALUES (?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, service.getServiceName());
-            ps.setString(2, service.getDescription());
-            ps.setInt(3, service.getPrice());
-            return ps.executeUpdate() > 0;
+
+    public ServiceDao() {}
+
+    // Insert a new service
+    public void insertService(String serviceName, String description, int price) {
+        String sql = "INSERT INTO [Service] (ServiceName, Description, Price) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, serviceName.trim());
+            ps.setString(2, description.trim());
+            ps.setInt(3, price);
+            ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
-        return false;
     }
 
-    public List<ServiceEntity> getAllServices() {
-        List<ServiceEntity> services = new ArrayList<>();
-        String sql = "SELECT * FROM services";
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                ServiceEntity service = new ServiceEntity(
-                        rs.getString("ServiceName"),
-                        rs.getString("Description"),
-                        rs.getInt("Price")
+    // Get a service by ID
+    public ServiceEntity getServiceByID(int serviceID) {
+        String sql = "SELECT * FROM [Service] WHERE ServiceID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, serviceID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new ServiceEntity(
+                    rs.getString("ServiceName"),
+                    rs.getString("Description"),
+                    rs.getInt("Price")
                 );
-                services.add(service);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return services;
-    }
-
-    public ServiceEntity getServiceByName(String name) {
-        String sql = "SELECT * FROM services WHERE ServiceName = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, name);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new ServiceEntity(
-                            rs.getString("ServiceName"),
-                            rs.getString("Description"),
-                            rs.getInt("Price")
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
         return null;
     }
 
-    public boolean updateService(ServiceEntity service) {
-        String sql = "UPDATE services SET Description = ?, Price = ? WHERE ServiceName = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, service.getDescription());
-            ps.setInt(2, service.getPrice());
-            ps.setString(3, service.getServiceName());
-            return ps.executeUpdate() > 0;
+    // Get all services
+    public ArrayList<ServiceEntity> getAllServices() {
+        ArrayList<ServiceEntity> list = new ArrayList<>();
+        String sql = "SELECT * FROM [Service]";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ServiceEntity(
+                    rs.getString("ServiceName"),
+                    rs.getString("Description"),
+                    rs.getInt("Price")
+                ));
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
-        return false;
+        return list;
     }
 
-    public boolean deleteService(String name) {
-        String sql = "DELETE FROM services WHERE ServiceName = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, name);
-            return ps.executeUpdate() > 0;
+    // Update a service by ID
+    public void updateService(int serviceID, String serviceName, String description, int price) {
+        String sql = "UPDATE [Service] SET ServiceName = ?, Description = ?, Price = ? WHERE ServiceID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, serviceName.trim());
+            ps.setString(2, description.trim());
+            ps.setInt(3, price);
+            ps.setInt(4, serviceID);
+            ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
-        return false;
+    }
+
+    // Delete a service by ID
+    public void deleteService(int serviceID) {
+        String sql = "DELETE FROM [Service] WHERE ServiceID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, serviceID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
   public static void main(String[] args) {
-
       ServiceDao sdao = new ServiceDao();
+    //    sdao.deleteService(2);
+//    System.out.println(sdao.getServiceByID(3));
+    sdao.updateService(3, "yeu", "cac", 11000);
+
+//    sdao.insertService("bo", "thich", 150000);
   }
 }
