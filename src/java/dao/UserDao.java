@@ -8,4 +8,4 @@ package dao;
 /**
  * @author admin
  */
-public class Udao {}
+public class UserDao extends DBContext  {}
