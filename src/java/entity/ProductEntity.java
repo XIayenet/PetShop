@@ -5,19 +5,21 @@
 
 package entity;
 
+import java.math.BigDecimal;
+
 /**
  * @author admin
  */
 public class ProductEntity {
     private String ProductName;
     private String Description;
-    private int Price;
+    private BigDecimal Price;
     private int StockQuantity;
 
     public ProductEntity() {
     }
 
-    public ProductEntity(String ProductName, String Description, int Price, int StockQuantity) {
+    public ProductEntity(String ProductName, String Description, BigDecimal Price, int StockQuantity) {
         this.ProductName = ProductName;
         this.Description = Description;
         this.Price = Price;
@@ -32,7 +34,7 @@ public class ProductEntity {
         return Description;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return Price;
     }
 
@@ -48,7 +50,7 @@ public class ProductEntity {
         this.Description = Description;
     }
 
-    public void setPrice(int Price) {
+    public void setPrice(BigDecimal Price) {
         this.Price = Price;
     }
 
