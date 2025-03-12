@@ -15,7 +15,7 @@ public class UserDao extends DBContext  {
     
      public UserDao() {}
      
-  public void createUser(String username, String password, String role) throws SQLException {
+  public void insertUser(String username, String password, String role)  {
         String sql = "INSERT INTO [User] (Username, Pass, Role) VALUES (?, ?, ?)";
         try 
         {
@@ -28,19 +28,37 @@ public class UserDao extends DBContext  {
     }
     }
     
-    public ResultSet getUser(int userId) throws SQLException {
-        String sql = "SELECT * FROM [User] WHERE UserID = ?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, userId);
-        return ps.executeQuery();
+   public UserEntity getUserById(int userid) {
+    String sql = "SELECT * FROM [User] WHERE UserID = ?";
+    try {
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setInt(1, userid);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+
+        UserEntity u =
+                new UserEntity(
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3));
+        
+        return u;
+        
+      }
+
+    } catch (Exception e) {
+      System.out.println(e);
     }
+    return null;
+  }
     
-    public void updateUser(int userId, String username, String password, String role) throws SQLException {
+    public void updateUser(int userId, String username, String password, String role)  {
         String sql = "UPDATE [User] SET Username = ?, Pass = ?, Role = ? WHERE UserID = ?";
         try 
              
         {
             PreparedStatement ps = connection.prepareStatement(sql);
+            
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, role);
@@ -52,7 +70,7 @@ public class UserDao extends DBContext  {
             
     }
     
-    public void deleteUser(int userId) throws SQLException {
+    public void deleteUser(int userId)  {
         String sql = "DELETE FROM [User] WHERE UserID = ?";
         try  {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -63,5 +81,14 @@ public class UserDao extends DBContext  {
         }
     }
 
+  public static void main(String[] args)  {
+      UserDao udao = new UserDao();
+    //        udao.insertUser("Canh1111111", "1232222", "Customer");
+    System.out.println(udao.getUserById(2));
 
+    //    udao.deleteUser(1);
+    //    udao.updateUser(2, "Canh123", "123", "Custormer");
+    udao.updateUser(2, "Canh2710", "789456", "Customer");
+  }
+  
 }
