@@ -60,3 +60,4 @@ jspm_packages/
 # System Files
 .DS_Store
 Thumbs.db
+/nbproject
