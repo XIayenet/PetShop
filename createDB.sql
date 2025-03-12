@@ -11,7 +11,8 @@ CREATE TABLE [User] (
     Username NVARCHAR(50) UNIQUE NOT NULL,
     Pass NVARCHAR(255) NOT NULL, 
     Role NVARCHAR(20) NOT NULL CHECK (Role IN ('Customer', 'Manager')),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+	State NVARCHAR(20) NOT NULL CHECK (State in ('Verified', 'Unverified'))
 );
 
 -- Create Customer Table (Linked to User)
