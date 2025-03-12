@@ -42,5 +42,6 @@ CREATE TABLE Sale (
     Quantity INT,
     TotalPrice DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+	FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
 );
