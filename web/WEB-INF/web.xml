@@ -29,6 +29,10 @@
         <servlet-name>AddProduct</servlet-name>
         <servlet-class>controller.AddProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>controller.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LandingPage</servlet-name>
         <url-pattern>/LandingPage</url-pattern>
@@ -56,6 +60,10 @@
     <servlet-mapping>
         <servlet-name>AddProduct</servlet-name>
         <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

@@ -5,6 +5,7 @@
 
 package controller;
 
+import dao.ProductDAO;
 import entity.UserEntity;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +33,11 @@ public class ProductList extends HttpServlet {
             HttpSession session = request.getSession();
             UserEntity currentUser = (UserEntity) session.getAttribute("user");
             if (currentUser != null && currentUser.getRole().equals("Manager")) {
+                
+                ProductDAO pdao = new ProductDAO();
+                request.setAttribute("products", pdao.getAllProducts());
+                
+                
                 request.getRequestDispatcher("product-list.jsp").forward(request, response);
             } else {
                 response.sendRedirect("index.jsp");

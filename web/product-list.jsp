@@ -119,10 +119,10 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-striped table-bordered">
+          <table class="table table-striped table-bordered table-hover align-middle">
             <thead class="table-light">
               <tr>
-                <th scope="col">Product ID</th>
+                <th scope="col">Image</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
@@ -132,17 +132,21 @@
             </thead>
             <tbody>
               <!-- Example row, replace with dynamic content -->
-              <tr>
-                <td>1</td>
-                <td>Grey Hoodie</td>
-                <td>This grey hoodie is perfect for your pet.</td>
-                <td>$18.00</td>
-                <td>50</td>
-                <td>
-                  <button class="btn btn-secondary btn-sm">Edit</button>
-                  <button class="btn btn-danger btn-sm">Delete</button>
-                </td>
-              </tr>
+              <c:forEach var="product" items="${products}">
+                  <tr>
+                    <td>
+                      <img src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
+                    </td>
+                    <td>${product.getProductName()}</td>
+                    <td>${product.getDescription()}</td>
+                    <td>$${product.getPrice()}</td>
+                    <td>${product.getStockQuantity()}</td>
+                    <td class="">
+                      <button class="btn btn-secondary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+              </c:forEach>
               <!-- Add more rows as needed -->
             </tbody>
           </table>
