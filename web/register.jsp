@@ -61,42 +61,29 @@
         </div>
       </div>
     </div>
-
   </header>
-
-  <section id="register" style="background: url('images/background-img.png') no-repeat;">
+  
+  <section id="register " style="background: url('images/background-img.png ' ) repeat-y; ">
     <div class="container-fluid">
-        <hr class="m-0">
+        <hr class="m-0 ">
       </div>
     <div class="container">
       <div class="row my-5 py-5">
-        <div class="offset-md-3 col-md-6">
-          <h2 class="display-3 fw-normal text-center" style="text-transform: none;">
+        <div class="offset-md-3 col-md-6 ">
+          <h2 class="display-3 fw-normal text-center " style="text-transform: none;">
             <span class="text-primary">Start caring for your pets now</span>
           </h2>
           <form action="register" method="post" id="register-form" class="needs-validation" novalidate>
               <div class="mb-3">
-              <input type="firstname" class="form-control form-control-lg" name="firstname" id="firstname"
-                placeholder="First Name" required>
-              <div class="invalid-feedback">
-                Please enter your First Name*.
-              </div>
-            </div>
-              <div class="mb-3">
-              <input type="lastname" class="form-control form-control-lg" name="lastname" id="lastname"
-                placeholder="Last Name" required>
-              <div class="invalid-feedback">
-               Please enter your Last Name*.
-              </div>
-            </div>
-            <div class="mb-3">
+                 <p class="text-light-emphasis fs-6 text-xxl-end">*Required</p>
               <input type="email" class="form-control form-control-lg" name="email" id="email"
                 placeholder="Enter Your Email Address" required>
               <div class="invalid-feedback">
                 Please enter a valid email address.
               </div>
             </div>
-            <div class="mb-3">
+              <div class="mb-3">
+                  <p class="text-light-emphasis fs-6 text-xxl-end">*Required</p>
               <input type="password" class="form-control form-control-lg" name="password1" id="password1"
                 placeholder="Create Password" required>
               <div class="invalid-feedback">
@@ -104,10 +91,40 @@
               </div>
             </div>
             <div class="mb-3">
+                <p class="text-light-emphasis fs-6 text-xxl-end">*Required</p>
               <input type="password" class="form-control form-control-lg" name="password2" id="password2"
                 placeholder="Repeat Password" required>
               <div class="invalid-feedback">
                 Please repeat your password.
+              </div>
+            </div>
+              <div class="mb-3">
+              <input type="firstname" class="form-control form-control-lg" name="firstname" id="firstname"
+                placeholder="First Name." required >
+              <div class="invalid-feedback">
+                 Please enter your first name
+              </div>
+            </div>
+              <div class="mb-3">
+                <p class="text-light-emphasis fs-6 text-xxl-end p-sm-1">*Required</p>
+              <input type="lastname" class="form-control form-control-lg" name="lastname" id="lastname"
+                placeholder="Last Name"  >
+              <div class="invalid-feedback">
+                Last Name.
+              </div>
+            </div>
+              <div class="mb-3">
+              <input type="phoneNumbers" class="form-control form-control-lg" name="phoneNumbers" id="phoneNumbers"
+                placeholder="Enter Your Phone Numbers" >
+              <div class="invalid-feedback">
+                Please enter a valid email address.
+              </div>
+              </div>
+            <div class="mb-3">
+              <input type="address" class="form-control form-control-lg" name="address" id="address"
+                placeholder="Enter Your Adress" >
+              <div class="invalid-feedback">
+                Please enter a valid  address.
               </div>
             </div>
             <div class="d-grid gap-2 mb-5">
