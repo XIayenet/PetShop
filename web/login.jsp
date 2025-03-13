@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>Login - Waggy</title>
+  <title>Login</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,12 +92,15 @@
             <div class="d-grid gap-2 mb-5">
               <button type="submit" class="btn btn-dark btn-lg rounded-1">Login</button>
             </div>
-                <c:if test="${errorMessage!=null}"> <div class="alert alert-danger text-center" role="alert">
+            <div class="mb-5 text-center fs-4">
+              No account yet? <span class="fw-bold"><a class="link-primary" href="./register">Create one now</a href=""></span>
+            </div>
+                <c:if test="${errorMessage!=null}"> 
+                <div class="alert alert-danger text-center" role="alert">
                     ${errorMessage}
                 </div> 
                 </c:if>
-                
-                
+
           </form>
         </div>
       </div>
