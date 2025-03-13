@@ -75,6 +75,20 @@
             <span class="text-primary">Start caring for your pets now</span>
           </h2>
           <form action="register" method="post" id="register-form" class="needs-validation" novalidate>
+              <div class="mb-3">
+              <input type="firstname" class="form-control form-control-lg" name="firstname" id="firstname"
+                placeholder="First Name" required>
+              <div class="invalid-feedback">
+                Please enter your First Name*.
+              </div>
+            </div>
+              <div class="mb-3">
+              <input type="lastname" class="form-control form-control-lg" name="lastname" id="lastname"
+                placeholder="Last Name" required>
+              <div class="invalid-feedback">
+               Please enter your Last Name*.
+              </div>
+            </div>
             <div class="mb-3">
               <input type="email" class="form-control form-control-lg" name="email" id="email"
                 placeholder="Enter Your Email Address" required>
