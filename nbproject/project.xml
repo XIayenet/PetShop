@@ -24,6 +24,9 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${file.reference.bcrypt-0.10.2.jar}</file>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.guava-33.4.0-jre.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
