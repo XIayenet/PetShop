@@ -9,49 +9,60 @@ package entity;
  * @author admin
  */
 public class UserEntity {
-    private String email;
-    private String pass;
-    private String role;
+    private String Email;
+    private String Pass;
+    private String Role;
+    private String State;
     
 
     public UserEntity() {
     }
 
-    public UserEntity(String email, String pass, String role) {
-        this.email = email;
-        this.pass = pass;
-        this.role = role;
+    public UserEntity(String email, String pass, String role, String state) {
+        this.Email = email;
+        this.Pass = pass;
+        this.Role = role;
+        this.State = state;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public String getPass() {
-        return pass;
+        return Pass;
     }
 
     public String getRole() {
-        return role;
+        return Role;
+    }
+
+    public String getState() {
+        return State;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public void setPass(String pass) {
-        this.pass = pass;
+        this.Pass = pass;
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.Role = role;
+    }
+
+    public void setState(String state) {
+        this.State = state;
     }
 
     @Override
     public String toString() {
-        return "UserEntity{" + "email=" + email + ", pass=" + pass + ", role=" + role + '}';
+        return "UserEntity{" + "email=" + Email + ", pass=" + Pass + ", role=" + Role + ", state=" + State + '}';
     }
 
+   
    
     
 }

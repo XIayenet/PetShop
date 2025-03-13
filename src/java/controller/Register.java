@@ -5,6 +5,7 @@
 
 package controller;
 
+import dao.UserDao;
 import entity.UserEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import utilities.PasswordEncryption;
 
 
 
@@ -64,8 +66,8 @@ public class Register extends HttpServlet {
       String email = request.getParameter("email");
       String password = request.getParameter("password");
       String rpassword = request.getParameter("rpassword");
-      //         PasswordEncryption.encryptPassword(password);
-      //         String pe =  PasswordEncryption.encryptPassword(password);
+               PasswordEncryption.encryptPassword(password);
+               String pe =  PasswordEncryption.encryptPassword(password);
       UserDao ddao = new UserDao();
 //      ddao.insertUserWithEmailPassword(email, password);
 //      ArrayList<UserEntity>user = new ArrayList<>();

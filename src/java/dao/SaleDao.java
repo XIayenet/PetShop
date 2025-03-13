@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SaleDAO extends DBContext {
+public class SaleDao extends DBContext {
 
-    public SaleDAO() {}
+    public SaleDao() {}
 
     public void insertSale(String customerID, String productID, int serviceID, int saleDate, int quantity, int totalPrice) {
         String sql = "INSERT INTO Sale (CustomerID, ProductID, ServiceID, SaleDate, Quantity, TotalPrice) VALUES (?, ?, ?, ?, ?, ?)";
