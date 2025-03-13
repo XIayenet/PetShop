@@ -73,23 +73,23 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a new product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form action="addProduct" method="POST">
+            <form action="addProduct" method="POST" enctype="multipart/form-data">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add a new product</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
                   <label for="productName" class="form-label">Product Name</label>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="productName" aria-describedby="basic-addon3">
+                    <input type="text" class="form-control" name="productName" id="productName" aria-describedby="basic-addon3">
                   </div>
 
                   <label for="productDescription" class="form-label">Description</label>
                   <div class="input-group mb-3">
                     <textarea id="productDescription" name="productDescription" class="form-control" aria-label="With textarea"></textarea>
                   </div>
-                  
+
                   <label for="price" class="form-label">Price</label>
                   <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
@@ -104,16 +104,17 @@
 
                   <div class="mb-3">
                     <label for="formFile" class="form-label">Product Image</label>
-                    <input class="form-control" name="image" type="file" id="formFile">
+                    <input class="form-control" accept="image/*" name="image" type="file" id="formFile">
                   </div>
 
-                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
+            </form>
+
           </div>
         </div>
 

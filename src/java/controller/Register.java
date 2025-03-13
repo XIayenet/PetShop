@@ -95,6 +95,7 @@ public class Register extends HttpServlet {
                         phoneNumber == null ? "" : phoneNumber, 
                         address == null ? "" : address);
 
+                session.setAttribute("user", udao.getUserByEmail(email));
                 response.sendRedirect("homePage");
             } else {
                 request.setAttribute("errorMessage", "Email already registered!");

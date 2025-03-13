@@ -18,14 +18,15 @@ import java.util.List;
  */
 public class ProductDAO extends DBContext {
 
-    public void createProduct(String ProductName, String Description, double Price, int StockQuantity) {
-        String sql = "INSERT INTO Product (ProductName, Description, Price, StockQuantity) VALUES (?, ?, ?, ?)";
+    public void createProduct(String ProductName, String Description, double Price, int StockQuantity, String imageUrl) {
+        String sql = "INSERT INTO Product (ProductName, Description, Price, StockQuantity, Image) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, ProductName);
             ps.setString(2, Description);
             ps.setDouble(3, Price);
             ps.setInt(4, StockQuantity);
+            ps.setString(5, imageUrl);
             ps.executeUpdate();
         } catch (Exception e) {
 
