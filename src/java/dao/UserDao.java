@@ -81,7 +81,7 @@ public class UserDao extends DBContext  {
             
         }
     }
-     public UserEntity getUserByEmail(String email) {
+    public UserEntity getUserByEmail(String email) {
     String sql = " SELECT * FROM [User] WHERE [email] = ? ";
     try {
       PreparedStatement ps = connection.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class UserDao extends DBContext  {
     }
     return null;
   }
-      public void insertUserWithEmailPassword(String Email, String Pass,String Role,String State) {
+      public void insertUserWithEmailPassword(String Email, String Pass) {
     String sql =
         "  Insert into [User]( [Email],[Pass],[Role],[State])\n" + "values (?,?,?,?)  ";
 
@@ -113,8 +113,8 @@ public class UserDao extends DBContext  {
       PreparedStatement ps = connection.prepareStatement(sql);
       ps.setString(1, Email);
       ps.setString(2, Pass);
-      ps.setString(3, Role);
-      ps.setString(4, State);
+      ps.setString(3, "Customer");
+      ps.setString(4, "Unverified");
       ps.executeUpdate();
     } catch (SQLException e) {
     }
@@ -123,13 +123,11 @@ public class UserDao extends DBContext  {
   public static void main(String[] args)  {
       UserDao udao = new UserDao();
     //        udao.insertUser("Canh1111111", "1232222", "Customer");
-    System.out.println(udao.getUserById(2));
 
     //    udao.deleteUser(1);
     //    udao.updateUser(2, "Canh123", "123", "Custormer");
     //    udao.updateUser(2, "Canh2710", "789456" );
     //  }
-    udao.insertUserWithEmailPassword("Canh@112", "123Ca", "Customer", "Verified");
   }
   
 }

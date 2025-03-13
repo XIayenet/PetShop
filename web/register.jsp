@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +74,7 @@
           <h2 class="display-3 fw-normal text-center" style="text-transform: none;">
             <span class="text-primary">Start caring for your pets now</span>
           </h2>
-          <form id="register-form" class="needs-validation" novalidate>
+          <form action="register" method="post" id="register-form" class="needs-validation" novalidate>
             <div class="mb-3">
               <input type="email" class="form-control form-control-lg" name="email" id="email"
                 placeholder="Enter Your Email Address" required>
@@ -97,6 +99,9 @@
             <div class="d-grid gap-2 mb-5">
               <button type="submit" class="btn btn-dark btn-lg rounded-1">Register</button>
             </div>
+              <h6 class="display-3 fw-normal text-center" style="text-transform: none;">
+            <span class="text-secondary">${errorMessage}</span>
+          </h6>
           </form>
         </div>
       </div>
@@ -206,7 +211,7 @@
       <hr class="m-0">
       <div class="row mt-3">
         <div class="col-md-6 copyright">
-          <p class="secondary-font">© 2023 PRJ302 PetShop. All rights reserved.</p>
+          <p class="secondary-font">Â© 2023 PRJ302 PetShop. All rights reserved.</p>
         </div>
       </div>
     </div>
