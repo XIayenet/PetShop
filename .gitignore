@@ -63,3 +63,4 @@ Thumbs.db
 nbproject/project.properties
 nbproject/private/private.properties
 src/java/dao/DBContext.java
+/nbproject
