@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 public class TagDao extends DBContext {
-
-    public TagDao() {}
-
+    
+    public TagDao() {
+    }
+    
     public void insertTag(String tagName, String description, int parentTagID, String usageCount) {
         String sql = "INSERT INTO [Tag] (TagName, Description, ParentTagID, UsageCount) VALUES (?, ?, ?, ?)";
         try {
@@ -26,7 +27,7 @@ public class TagDao extends DBContext {
             System.out.println(e);
         }
     }
-
+    
     public TagEntity getTagById(int tagID) {
         String sql = "SELECT * FROM [Tag] WHERE TagID = ?";
         try {
@@ -47,7 +48,7 @@ public class TagDao extends DBContext {
         }
         return null;
     }
-
+    
     public ArrayList<TagEntity> getAllTags() {
         ArrayList<TagEntity> list = new ArrayList<>();
         String sql = "SELECT * FROM [Tag]";
@@ -86,11 +87,11 @@ public class TagDao extends DBContext {
     
     public List<Integer> getDescendantTagIDs(int tagID) {
         List<Integer> descendants = new ArrayList<>();
-        String sql = "WITH RecursiveTags AS (" +
-                     " SELECT TagID, ParentTagID FROM Tag WHERE TagID = ? " +
-                     " UNION ALL " +
-                     " SELECT t2.TagID, t2.ParentTagID FROM Tag t2 JOIN RecursiveTags rt ON t2.ParentTagID = rt.TagID " +
-                     ") SELECT TagID FROM RecursiveTags";
+        String sql = "WITH RecursiveTags AS ("
+                + " SELECT TagID, ParentTagID FROM Tag WHERE TagID = ? "
+                + " UNION ALL "
+                + " SELECT t2.TagID, t2.ParentTagID FROM Tag t2 JOIN RecursiveTags rt ON t2.ParentTagID = rt.TagID "
+                + ") SELECT TagID FROM RecursiveTags";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, tagID);
@@ -103,7 +104,7 @@ public class TagDao extends DBContext {
         }
         return descendants;
     }
-
+    
     public List<Integer> getExpandedTagIDs(String[] selectedTags) {
         Set<Integer> allTagIDs = new HashSet<>();
         for (String tagName : selectedTags) {
@@ -115,7 +116,7 @@ public class TagDao extends DBContext {
         }
         return new ArrayList<>(allTagIDs);
     }
-
+    
     private int getTagIDByTagName(String tagName) {
         int tagID = -1;
         String sql = "SELECT TagID FROM Tag WHERE TagName = ?";
@@ -131,7 +132,7 @@ public class TagDao extends DBContext {
         }
         return tagID;
     }
-
+    
     public void updateTag(int tagID, String tagName, String description, int parentTagID, String usageCount) {
         String sql = "UPDATE [Tag] SET TagName = ?, Description = ?, ParentTagID = ?, UsageCount = ? WHERE TagID = ?";
         try {
@@ -146,9 +147,37 @@ public class TagDao extends DBContext {
             System.out.println(e);
         }
     }
-
-  public static void main(String[] args) {
+    
+    public ArrayList<TagEntity> getTagByProduct(int productID) {
+        ArrayList<TagEntity> list = new ArrayList<>();
+        String sql = "SELECT t.TagID, t.TagName, t.Description, t.ParentTagID, t.UsageCount "
+                + "FROM Tag t "
+                + "JOIN ProductTag pt ON t.TagID = pt.TagID "
+                + "WHERE pt.ProductID = ?";
+        
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, productID); // Set the productID parameter
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    TagEntity tag = new TagEntity(
+                            rs.getInt("TagID"),
+                            rs.getString("TagName"),
+                            rs.getString("Description"),
+                            rs.getInt("ParentTagID"),
+                            rs.getString("UsageCount") // UsageCount is an INT, not a String
+                    );
+                    list.add(tag);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching tags for product: " + e.getMessage());
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
         TagDao tdao = new TagDao();
-    tdao.insertTag("hai", "hay", 5, "120");
-  }
+//        tdao.insertTag("hai", "hay", 5, "120");
+        System.out.println(tdao.getTagByProduct(5));
+    }
 }

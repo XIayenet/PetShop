@@ -135,7 +135,9 @@
               <c:forEach var="product" items="${products}">
                   <tr>
                     <td>
-                      <img src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
+                      <a href="productDetail?productID=${product.getProductID()}">
+                        <img src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
+                      </a>
                     </td>
                     <td>${product.getProductName()}</td>
                     <td>${product.getDescription()}</td>

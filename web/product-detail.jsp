@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,10 +70,16 @@
           <img src="images/item1.jpg" class="img-fluid rounded-4" alt="Product Image">
         </div>
         <div class="col-md-6">
-          <h2 class="display-4 fw-normal">Grey Hoodie</h2>
-          <p class="text-muted">Category: Clothing</p>
-          <h3 class="text-primary">$18.00</h3>
-          <p class="lead">This grey hoodie is perfect for your pet. Made from high-quality materials, it is comfortable and stylish.</p>
+          <h2 class="display-4 fw-normal">${product.getProductName()}</h2>
+          <p class="text-muted">Category: 
+            
+          <c:forEach var="tag" items="${tags}">
+                <span>
+                    <span class="badge bg-primary fs-6">${tag.tagName}</span>
+                </span> 
+          </c:forEach></p>
+          <h3 class="text-primary">${product.price}</h3>
+          <p class="lead">${product.description}</p>
           <div class="d-flex align-items-center mb-3">
             <label for="quantity" class="me-3">Quantity:</label>
             <div class="input-group" style="width: 120px;">
@@ -189,7 +197,7 @@
       <hr class="m-0">
       <div class="row mt-3">
         <div class="col-md-6 copyright">
-          <p class="secondary-font">© 2023 PRJ302 PetShop. All rights reserved.</p>
+          <p class="secondary-font">Â© 2023 PRJ302 PetShop. All rights reserved.</p>
         </div>
       </div>
     </div>
