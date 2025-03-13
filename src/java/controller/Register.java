@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.CustomerDAO;
 import dao.UserDao;
 import entity.UserEntity;
 import jakarta.servlet.ServletException;
@@ -69,9 +70,15 @@ public class Register extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password1");
             String rpassword = request.getParameter("password2");
-            UserDao ddao = new UserDao();
-            
-            if (!rpassword.equals(password) ) {
+
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String address = request.getParameter("address");
+
+            UserDao udao = new UserDao();
+
+            if (!rpassword.equals(password)) {
                 request.setAttribute("errorMessage", "Passwords do not match!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
@@ -79,11 +86,15 @@ public class Register extends HttpServlet {
 
 //      ArrayList<UserEntity>user = new ArrayList<>();
 //      session.setAttribute("user", user);
-            UserEntity checkExist = ddao.getUserByEmail(email);
+            UserEntity checkExist = udao.getUserByEmail(email);
 
             if (checkExist == null) {
                 password = PasswordEncryption.encryptPassword(password);
-                ddao.insertUserWithEmailPassword(email, password);
+                udao.registerUser(email, password, firstName, 
+                        lastName == null ? "" : lastName, 
+                        phoneNumber == null ? "" : phoneNumber, 
+                        address == null ? "" : address);
+
                 response.sendRedirect("homePage");
             } else {
                 request.setAttribute("errorMessage", "Email already registered!");
