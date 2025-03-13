@@ -681,7 +681,7 @@
             <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
             <div class="card-body p-0">
               <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                <h3 class="card-title pt-4 m-0">Gay hoodie</h3>
               </a>
 
               <div class="card-text">
@@ -827,7 +827,7 @@
           <a href="single-product.html"><img src="images/item11.jpg" class="img-fluid rounded-4" alt="image"></a>
           <div class="card-body p-0">
             <a href="single-product.html">
-              <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+              <h3 class="card-title pt-4 m-0">Gays hoodie</h3>
             </a>
 
             <div class="card-text">

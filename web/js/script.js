@@ -183,4 +183,85 @@
 
   }); // End of a document
 
+// Search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('#search-form-body input');
+    const tagCheckboxes = document.querySelectorAll('#filter-form input[type="checkbox"]');
+    
+    // Debounce function to limit API calls
+    const debounce = (func, delay) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+
+    // Search function
+    const performSearch = debounce(async () => {
+        const searchTerm = searchInput.value;
+        const selectedTags = Array.from(tagCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        try {
+            const response = await fetch('/SearchServlet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    query: searchTerm,
+                    tags: selectedTags
+                })
+            });
+            
+            const results = await response.json();
+            updateSearchResults(results);
+        } catch (error) {
+            console.error('Search error:', error);
+        }
+    }, 300);
+
+    // Event listeners
+    searchInput.addEventListener('input', performSearch);
+    tagCheckboxes.forEach(checkbox => 
+        checkbox.addEventListener('change', performSearch)
+    );
+
+    // Update results in DOM
+    function updateSearchResults(products) {
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = products.length > 0 
+            ? products.map(product => createProductCard(product)).join('')
+            : '<p class="text-center">No products found matching your criteria</p>';
+    }
+
+    // Create product card HTML
+    function createProductCard(product) {
+        return `
+            <div class="item dog col-md-4 col-lg-3 my-4">
+                <div class="card position-relative">
+                    <a href="single-product.html?id=${product.ProductID}">
+                        <img src="${product.Image}" class="img-fluid rounded-4" alt="${product.ProductName}">
+                    </a>
+                    <div class="card-body p-0">
+                        <a href="single-product.html?id=${product.ProductID}">
+                            <h3 class="card-title pt-4 m-0">${product.ProductName}</h3>
+                        </a>
+                        <div class="card-text">
+                            <h3 class="secondary-font text-primary">$${product.Price.toFixed(2)}</h3>
+                            <div class="d-flex flex-wrap mt-3">
+                                <button class="btn-cart me-3 px-4 pt-3 pb-3" 
+                                    onclick="addToCart(${product.ProductID})">
+                                    <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+});
 })(jQuery);
