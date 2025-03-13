@@ -18,7 +18,6 @@ bin/
 *.class
 *.war
 *.ear
-*.jar
 
 # Jakarta EE / Java
 *.log
@@ -29,7 +28,6 @@ bin/
 *.class
 *.war
 *.ear
-*.jar
 
 ## NetBeans
 nbproject/private/
