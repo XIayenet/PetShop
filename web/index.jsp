@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-  </head>
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
@@ -108,6 +108,7 @@
   <div class="offcanvas-header justify-content-center">
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
+  <!--  // CART // -->
   <div class="offcanvas-body">
     <div class="order-md-last">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -145,6 +146,8 @@
       <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </div>
   </div>
+  <!--  // CART // -->
+  
 </div>
 
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch"

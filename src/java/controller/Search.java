@@ -30,6 +30,8 @@ public class Search extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+                    HttpSession session = request.getSession();
+
         try {
 
             String[] selectedTags = request.getParameterValues("tags");
@@ -37,10 +39,10 @@ public class Search extends HttpServlet {
             TagDao tagDAO = new TagDao();
             ProductDAO productDAO = new ProductDAO();
             List<String> allTags = tagDAO.getAllTagNames();
-            logger.severe(allTags.toString());
+//            logger.severe(allTags.toString());
             List<ProductEntity> products = productDAO.searchProducts(selectedTags, searchTerm);
-            System.out.println(products);
-            logger.severe(products.toString());
+//            System.out.println(products);
+//            logger.severe(products.toString());
             request.setAttribute("allTags", allTags);
             request.setAttribute("selectedTags", selectedTags);
             request.setAttribute("searchTerm", searchTerm);

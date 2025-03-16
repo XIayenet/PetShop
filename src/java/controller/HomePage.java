@@ -31,7 +31,7 @@ public class HomePage extends HttpServlet {
             HttpSession session = request.getSession();
             UserEntity currentUser = (UserEntity) session.getAttribute("user");
             if (currentUser == null) {
-                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
