@@ -200,7 +200,7 @@
         <div class="row">
           <div class="col-md-3">
             <h3>Filter by Tags</h3>
-            <form id="search-form" method="GET" action="/search">
+            <form id="search-form" method="GET" action="search">
               <%
                   List<String> allTags = (List<String>) request.getAttribute("allTags");
                   String[] selectedTags = (String[]) request.getAttribute("selectedTags");
@@ -213,6 +213,9 @@
                 <label class="form-check-label" for="tag_<%= tag%>"><%= tag%></label>
               </div>
               <% }%>
+              <div>
+                <button type="submit" class="btn btn">
+              </div>
           </div>
           <div class="col-md-9">
             <div class="search-bar border rounded-2 px-3 border-dark-subtle mb-4">
@@ -317,52 +320,6 @@
               <% }%>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="container py-5 mb-5">
-        <div class="isotope-container row">
-
-          <div class="item cat col-md-4 col-lg-3 my-4">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item9.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-
         </div>
       </div>
 
