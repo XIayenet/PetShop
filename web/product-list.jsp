@@ -49,7 +49,7 @@
             </div>
           </div>
           <div
-              class="col-sm-8 col-lg-4 d-flex justify-content-end gap-2 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            class="col-sm-8 col-lg-4 d-flex justify-content-end gap-2 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
             <div class="support-box text-end d-none d-lg-block">
               <span class="fs-6 secondary-font text-muted">Phone</span>
               <h5 class="mb-0">0966907482</h5>
@@ -117,6 +117,7 @@
 
           </div>
         </div>
+        <!-- Modal -->
 
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover align-middle">
@@ -133,23 +134,79 @@
             <tbody>
               <!-- Example row, replace with dynamic content -->
               <c:forEach var="product" items="${products}">
-                  <tr>
-                    <td>
-                      <a href="productDetail?productID=${product.getProductID()}">
-                        <img src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
-                      </a>
-                    </td>
-                    <td>${product.getProductName()}</td>
-                    <td>${product.getDescription()}</td>
-                    <td>$${product.getPrice()}</td>
-                    <td>${product.getStockQuantity()}</td>
-                    <td class="">
-                      <button class="btn btn-secondary btn-sm" >Edit</button>
-                      <button class="btn btn-danger btn-sm" >Delete</button>
-                    </td>
-                  </tr>
-              </c:forEach>
-              <!-- Add more rows as needed -->
+                <tr>
+                  <td>
+                    <a href="productDetail?productID=${product.getProductID()}">
+                      <img src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
+                    </a>
+                  </td>
+                  <td>${product.getProductName()}</td>
+                  <td>${product.getDescription()}</td>
+                  <td>$${product.getPrice()}</td>
+                  <td>${product.getStockQuantity()}</td>
+                  <td class="">
+                    <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modal${product.getProductID()}" >Edit</button>
+                    <button class="btn btn-danger btn-sm" >Delete</button>
+                  </td>
+                </tr>
+                <!-- Modal -->
+              <div class="modal fade" id="modal${product.getProductID()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <form method="POST" action="editProduct?productID=${product.getProductID()}" enctype="multipart/form-data" >
+                        <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editing ${product.getProductName()}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <div class="input-group mb-3">
+                          <input value="${product.getProductName()}" type="text" class="form-control" name="productName" id="productName" aria-describedby="basic-addon3">
+                        </div>
+
+                        <label for="productDescription" class="form-label">Description</label>
+                        <div class="input-group mb-3">
+                          <textarea id="productDescription" name="productDescription" class="form-control" aria-label="With textarea">${product.getDescription()}</textarea>
+                        </div>
+
+                        <label for="price" class="form-label">Price</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">$</span>
+                          <input value="${product.getPrice()}" id="price" name="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <span class="input-group-text">.00</span>
+                        </div>
+
+                        <label for="stock" class="form-label">Stock Quantity</label>
+                        <div class="input-group mb-3">
+                          <input value="${product.getStockQuantity()}" type="text" class="form-control" name="stock" id="stock" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label">Product Image</label>
+                          <div class="row justify-content-start">
+                            <div class="col-auto">
+                              <img class="" src="${product.image}" alt="${product.productName}" style="width: 100px; height: auto;">
+                            </div>
+                            <div class="col-auto">
+                              <input  class="form-control py-3 my-3 mx-0" accept="image/*" name="image" type="file" id="formFile">
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+              <!-- Modal -->
+            </c:forEach>
+            <!-- Add more rows as needed -->
             </tbody>
           </table>
         </div>

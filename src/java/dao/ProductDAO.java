@@ -82,13 +82,13 @@ public class ProductDAO extends DBContext {
     }
 
     
-    public void updateProduct(int productId, String name, String description, BigDecimal price, String image, int stock) {
+    public void updateProduct(int productId, String name, String description, double price, String image, int stock) {
         String sql = "UPDATE Product SET ProductName = ?, Description = ?, Price = ?, StockQuantity = ?, Image = ? WHERE ProductID = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, description);
-            ps.setBigDecimal(3, price);
+            ps.setDouble(3, price);
             ps.setInt(4, stock);
             ps.setString(5, image);
             ps.setInt(6, productId);
