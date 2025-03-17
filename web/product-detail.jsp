@@ -31,7 +31,7 @@
       <div class="row py-4 pb-0 pb-sm-4 align-items-center">
         <div class="col-sm-4 col-lg-3 text-center text-sm-start">
           <div class="main-logo">
-            <a href="index.html">
+            <a href="homePage">
               <img src="images/logo.png" alt="logo" class="img-fluid">
             </a>
           </div>

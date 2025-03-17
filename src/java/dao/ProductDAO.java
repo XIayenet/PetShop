@@ -81,6 +81,7 @@ public class ProductDAO extends DBContext {
         return products;
     }
 
+    
     public void updateProduct(int productId, String name, String description, BigDecimal price, String image, int stock) {
         String sql = "UPDATE Product SET ProductName = ?, Description = ?, Price = ?, StockQuantity = ?, Image = ? WHERE ProductID = ?";
         try {

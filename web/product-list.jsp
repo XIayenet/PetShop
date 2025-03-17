@@ -31,7 +31,7 @@
         <div class="row py-4 pb-0 pb-sm-4 align-items-center">
           <div class="col-sm-4 col-lg-3 text-center text-sm-start">
             <div class="main-logo">
-              <a href="index.html">
+              <a href="homePage">
                 <img src="images/logo.png" alt="logo" class="img-fluid">
               </a>
             </div>
@@ -144,8 +144,8 @@
                     <td>$${product.getPrice()}</td>
                     <td>${product.getStockQuantity()}</td>
                     <td class="">
-                      <button class="btn btn-secondary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Delete</button>
+                      <button class="btn btn-secondary btn-sm" >Edit</button>
+                      <button class="btn btn-danger btn-sm" >Delete</button>
                     </td>
                   </tr>
               </c:forEach>
