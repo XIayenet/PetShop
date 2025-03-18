@@ -36,7 +36,7 @@ public class HomePage extends HttpServlet {
             ArrayList<ProductEntity> dogToysProducts = ptd.getProductsByTagId(4);
             ArrayList<ProductEntity> dogFoodies = ptd.getProductsByTagId(5);
             UserEntity currentUser = (UserEntity) session.getAttribute("user");
-            request.setAttribute("dogToy",dogToysProducts); 
+            request.setAttribute("dogToys",dogToysProducts); 
             request.setAttribute("dogFood",dogFoodies); 
             if (currentUser == null) {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
