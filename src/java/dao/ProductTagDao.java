@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entity.ProductEntity;
 import entity.ProductTagEntity;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,6 +82,35 @@ public class ProductTagDao extends DBContext {
         }
         return list;
     }
+    
+   public ArrayList<ProductEntity> getProductsByTagId(int tagId) {
+    ArrayList<ProductEntity> productList = new ArrayList<>();
+    String sql = """
+        SELECT p.*
+        FROM Product p
+        JOIN ProductTag pt ON p.ProductID = pt.ProductID
+        WHERE pt.TagID = ?
+    """;
+
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, tagId);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            productList.add(new ProductEntity(
+                rs.getInt("ProductID"),
+                rs.getString("ProductName"),
+                rs.getString("Description"),
+                rs.getBigDecimal("Price"),
+                rs.getInt("StockQuantity"),
+                rs.getString("Image")
+            ));
+        }
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+    return productList;
+}
 
     public List<ProductTagEntity> getAll() {
         List<ProductTagEntity> list = new ArrayList<>();
@@ -116,6 +146,10 @@ public class ProductTagDao extends DBContext {
         return false;
     }
 
-   
+  public static void main(String[] args) {
+         ProductTagDao ptd = new ProductTagDao();
+    System.out.println(ptd.getProductsByTagId(4));
+  }
+
    
 }
